@@ -940,12 +940,13 @@ Licensed under the BSD-2-Clause License.
     };
 
     Line.prototype.hoverContentForRow = function(index) {
-      var content, j, row, y, _i, _len, _ref;
+      var content, j, h, row, y, _i, _len, _ref;
       row = this.data[index];
       content = $("<div class='morris-hover-row-label'>").text(row.label);
       content = content.prop('outerHTML');
       _ref = row.y;
-      for (j = _i = 0, _len = _ref.length; _i < _len; j = ++_i) {
+      for (h = _i = 0, _len = _ref.length; _i < _len; h = ++_i) {
+        j = this.cumulative ? _len - _i - 1 : h; // Reverse the list for area chart to match order in graph.
         y = _ref[j];
         if (this.options.labels[j] === false) {
           continue;
